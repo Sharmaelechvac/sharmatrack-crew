@@ -51,7 +51,105 @@
     <div class="ps" id="ring-sub">0 of 16 captions</div></div>
   </div>
   <a class="mapsbtn" href="https://www.google.com/maps/search/?api=1&query=3274+W+Eunice+Dr%2C+Dunnellon%2C+FL" target="_blank" rel="noopener" data-i18n="openInMaps">Open in Maps</a>
-  <a class="mapsbtn" href="/map-3274-w-eunice-dr">📐 Interactive Drawings &amp; Map</a>
+  <div class="dvwrap">
+    <div class="dvhead"><span>📐 Interactive Drawings &amp; Map</span><a class="dvfull" href="../map-3274-w-eunice-dr.html">Open full page &#8599;</a></div>
+    <p class="dvset">Electrical Set v13s · Interactive drawings</p>
+    <div class="dvtabs" id="dvtabs"></div>
+    <div class="dvstage"><div class="dvviewport" id="dvvp"><img id="dvsheet" alt="Drawing sheet"></div></div>
+    <div class="dvbar">
+      <button id="dvprev" aria-label="Previous sheet">&#8592;</button>
+      <button id="dvnext" aria-label="Next sheet">&#8594;</button>
+      <div class="dvcount" id="dvcount"></div>
+      <button id="dvzout" aria-label="Zoom out">&#8722;</button>
+      <button id="dvzfit">Fit</button>
+      <button id="dvzin" aria-label="Zoom in">+</button>
+    </div>
+    <p class="dvhint">Tap a sheet tab to jump. Pinch, scroll or use + / &#8722; to zoom; drag to move around the sheet.</p>
+    <div class="dvmap">
+      <div class="dvmt">&#128205; Property map</div>
+      <iframe title="Map — 3274 W Eunice Dr, Dunnellon, FL" src="https://www.google.com/maps?q=3274%20W%20Eunice%20Dr%2C%20Dunnellon%2C%20FL&amp;output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade">
+      <div class="dvacts">
+        <a class="dvdir" href="https://www.google.com/maps/dir/?api=1&amp;destination=3274%20W%20Eunice%20Dr%2C%20Dunnellon%2C%20FL">Get Directions</a>
+        <a class="dvopen" href="https://www.google.com/maps/search/?api=1&amp;query=3274%20W%20Eunice%20Dr%2C%20Dunnellon%2C%20FL">Open in Google Maps</a>
+      </div>
+    </div>
+  </div>
+  <style>
+    .dvwrap { margin:14px 0; }
+    .dvhead { display:flex; align-items:center; justify-content:space-between; gap:10px; font-weight:800; color:#004585; font-size:17px; margin:0 0 2px; }
+    .dvfull { text-decoration:none; font-size:14px; font-weight:700; color:#0058a3; border:2px solid #0058a3; padding:7px 12px; border-radius:999px; background:#fff; white-space:nowrap; }
+    .dvset { color:#0058a3; font-weight:700; margin:0 0 10px; font-size:13px; letter-spacing:.04em; text-transform:uppercase; }
+    .dvtabs { display:flex; gap:6px; overflow-x:auto; padding:4px 2px 10px; -webkit-overflow-scrolling:touch; }
+    .dvtabs button { flex:0 0 auto; border:2px solid #0058a3; background:#fff; color:#0058a3; font-weight:700; font-size:14px; padding:8px 13px; border-radius:999px; cursor:pointer; }
+    .dvtabs button.on { background:#0058a3; color:#fff; }
+    .dvstage { background:#10314e; border-radius:12px; overflow:hidden; position:relative; box-shadow:0 2px 10px rgba(0,69,133,.15); }
+    .dvviewport { width:100%; height:min(68vh,700px); overflow:hidden; touch-action:none; cursor:grab; position:relative; }
+    .dvviewport:active { cursor:grabbing; }
+    .dvviewport img { position:absolute; left:0; top:0; width:100%; height:100%; object-fit:contain; transform-origin:0 0; user-select:none; -webkit-user-drag:none; }
+    .dvbar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; background:#fff; border:1px solid #d7e6f3; border-top:none; border-radius:0 0 12px 12px; padding:10px 12px; margin-top:-12px; position:relative; z-index:2; }
+    .dvbar button { border:2px solid #0058a3; background:#fff; color:#0058a3; font-weight:700; font-size:16px; min-width:44px; height:40px; border-radius:9px; cursor:pointer; padding:0 12px; }
+    .dvcount { font-weight:700; color:#004585; font-size:15px; margin:0 auto; text-align:center; }
+    .dvhint { text-align:center; color:#678; font-size:13px; margin:8px 0 0; }
+    .dvmap { margin-top:16px; background:#fff; border:1px solid #d7e6f3; border-radius:12px; overflow:hidden; }
+    .dvmap .dvmt { padding:10px 14px 0; font-weight:700; color:#004585; font-size:15px; }
+    .dvmap iframe { display:block; width:100%; height:190px; border:0; margin-top:8px; }
+    .dvmap .dvacts { display:flex; gap:10px; flex-wrap:wrap; padding:12px 14px 14px; }
+    .dvmap .dvacts a { flex:1 1 200px; text-align:center; text-decoration:none; font-weight:700; padding:12px; border-radius:10px; font-size:15px; }
+    .dvdir { background:#0058a3; color:#fff; }
+    .dvopen { background:#fff; color:#0058a3; border:2px solid #0058a3; }
+  </style>
+  <script>
+  (function(){
+  var LABELS = ["E-0", "E-1", "E-2", "E-3.1", "E-3.2", "E-3.3", "E-3.4", "E-3.5", "E-3.6", "E-3.7", "E-3.8", "E-3.9", "E-3.10", "E-3.11", "E-3.12", "E-3.13", "E-3.14", "E-3.15", "E-3.16"];
+  var SRC = ["../drawings/3274-w-eunice-dr/sheet-01.webp", "../drawings/3274-w-eunice-dr/sheet-02.webp", "../drawings/3274-w-eunice-dr/sheet-03.webp", "../drawings/3274-w-eunice-dr/sheet-04.webp", "../drawings/3274-w-eunice-dr/sheet-05.webp", "../drawings/3274-w-eunice-dr/sheet-06.webp", "../drawings/3274-w-eunice-dr/sheet-07.webp", "../drawings/3274-w-eunice-dr/sheet-08.webp", "../drawings/3274-w-eunice-dr/sheet-09.webp", "../drawings/3274-w-eunice-dr/sheet-10.webp", "../drawings/3274-w-eunice-dr/sheet-11.webp", "../drawings/3274-w-eunice-dr/sheet-12.webp", "../drawings/3274-w-eunice-dr/sheet-13.webp", "../drawings/3274-w-eunice-dr/sheet-14.webp", "../drawings/3274-w-eunice-dr/sheet-15.webp", "../drawings/3274-w-eunice-dr/sheet-16.webp", "../drawings/3274-w-eunice-dr/sheet-17.webp", "../drawings/3274-w-eunice-dr/sheet-18.webp", "../drawings/3274-w-eunice-dr/sheet-19.webp"];
+  var i = 0, scale = 1, tx = 0, ty = 0;
+  var vp = document.getElementById('dvvp'), img = document.getElementById('dvsheet'),
+      tabs = document.getElementById('dvtabs'), count = document.getElementById('dvcount');
+  LABELS.forEach(function(l, k) { var b = document.createElement('button'); b.textContent = l; b.onclick = function() { show(k); }; tabs.appendChild(b); });
+  function apply() { img.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')'; }
+  function fit() { scale = 1; tx = 0; ty = 0; apply(); }
+  function show(k) {
+    i = Math.max(0, Math.min(LABELS.length - 1, k));
+    img.src = SRC[i]; fit();
+    count.textContent = 'Sheet ' + LABELS[i] + ' \u00b7 ' + (i + 1) + ' of ' + LABELS.length;
+    Array.prototype.forEach.call(tabs.children, function(b, j) { b.className = j === i ? 'on' : ''; });
+    tabs.children[i].scrollIntoView({block:'nearest', inline:'center'});
+    var n = new Image(); if (SRC[i + 1]) n.src = SRC[i + 1];
+  }
+  document.getElementById('dvprev').onclick = function() { show(i - 1); };
+  document.getElementById('dvnext').onclick = function() { show(i + 1); };
+  document.getElementById('dvzfit').onclick = fit;
+  function zoom(f, cx, cy) {
+    var r = vp.getBoundingClientRect();
+    cx = (cx == null ? r.width / 2 : cx); cy = (cy == null ? r.height / 2 : cy);
+    var ns = Math.max(1, Math.min(6, scale * f));
+    tx = cx - (cx - tx) * (ns / scale); ty = cy - (cy - ty) * (ns / scale);
+    scale = ns; apply();
+  }
+  document.getElementById('dvzin').onclick = function() { zoom(1.35); };
+  document.getElementById('dvzout').onclick = function() { zoom(1 / 1.35); };
+  vp.addEventListener('wheel', function(e) { e.preventDefault(); var r = vp.getBoundingClientRect(); zoom(e.deltaY < 0 ? 1.15 : 1 / 1.15, e.clientX - r.left, e.clientY - r.top); }, {passive:false});
+  img.addEventListener('dblclick', function(e) { if (scale > 1.05) fit(); else { var r = vp.getBoundingClientRect(); zoom(2.2, e.clientX - r.left, e.clientY - r.top); } });
+  var ptrs = {}, pdist = 0;
+  vp.addEventListener('pointerdown', function(e) { ptrs[e.pointerId] = {x:e.clientX, y:e.clientY}; vp.setPointerCapture(e.pointerId); });
+  vp.addEventListener('pointermove', function(e) {
+    if (!ptrs[e.pointerId]) return;
+    var p = ptrs[e.pointerId], dx = e.clientX - p.x, dy = e.clientY - p.y;
+    ptrs[e.pointerId] = {x:e.clientX, y:e.clientY};
+    var ids = Object.keys(ptrs);
+    if (ids.length === 1) { tx += dx; ty += dy; apply(); }
+    else if (ids.length === 2) {
+      var a = ptrs[ids[0]], b = ptrs[ids[1]];
+      var d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (pdist) { var r = vp.getBoundingClientRect(); zoom(d / pdist, (a.x + b.x) / 2 - r.left, (a.y + b.y) / 2 - r.top); }
+      pdist = d;
+    }
+  });
+  function up(e) { delete ptrs[e.pointerId]; if (Object.keys(ptrs).length < 2) pdist = 0; }
+  vp.addEventListener('pointerup', up); vp.addEventListener('pointercancel', up);
+  show(0);
+  })();
+  </script>
   <details class="section">
     <summary data-i18n="howToUse">How to use</summary>
     <ol>
