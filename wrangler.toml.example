@@ -1,0 +1,17 @@
+# Sharma Crew App — Cloudflare Pages (wrangler deploy only).
+# Copy to wrangler.toml if deploying with `wrangler pages deploy`.
+# For dashboard / drag-and-drop deploys, set the same binding in the UI
+# (Project Settings → Functions → KV namespace bindings) — see BINDINGS.md.
+name = "sharmatrack-crew"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "."
+
+# KV namespace binding — storage is KV, not R2 (R2 requires a payment
+# method on file to enable; KV's free tier does not).
+# Create the namespace first (dashboard → KV → Create namespace, name
+# "sharma-crew-photos", or `wrangler kv namespace create sharma-crew-photos`)
+# and paste its id here.
+[[kv_namespaces]]
+binding = "PHOTOS"
+id = "<KV_NAMESPACE_ID>"
+preview_id = "<KV_NAMESPACE_PREVIEW_ID>"
