@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SHARMATRACK — 3131 W Eunice Dr</title>
-<link rel="stylesheet" href="../styles.css?v=9">
+<link rel="stylesheet" href="../styles.css?v=10">
 <link rel="icon" href="../sharmatrack-app-icon.png">
 <link rel="apple-touch-icon" href="../sharmatrack-app-icon.png">
 </head><body>
@@ -197,121 +197,15 @@
     <button type="button" data-phase="trim" data-i18n="tabTrim">Trim</button>
   </div>
   <div class="section" id="phase-rough">
-    <h2><span data-i18n="roughIn">Electrical Rough-in</span> — <span id="rough-done">0 of 16 done</span></h2>
-
-  <div class="capcard" id="cap-0">
-    <div class="top"><span class="cap">Meter / service</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="0" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="0" data-phase="rough"></label>
+    <h2><span data-i18n="roughIn">Electrical Rough-in</span> — <span id="rough-done">0 photos</span></h2>
+    <div id="rough-tiles"></div>
+    <div class="freecap">
+      <input type="text" id="rough-caption" data-i18n-ph="tugCapPh" placeholder="Write a caption for the photo(s)" autocomplete="off">
+      <div class="btns">
+        <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="roughfree"></label>
+        <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="roughfree"></label>
+      </div>
     </div>
-  </div>
-  <div class="capcard" id="cap-1">
-    <div class="top"><span class="cap">Grounding electrodes &amp; bonding</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="1" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="1" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-2">
-    <div class="top"><span class="cap">Panel mounting &amp; labeled home runs</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="2" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="2" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-3">
-    <div class="top"><span class="cap">UF cable in kitchen</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="3" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="3" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-4">
-    <div class="top"><span class="cap">All 240V locations and landings</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="4" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="4" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-5">
-    <div class="top"><span class="cap">Switch box neatness throughout home</span><span class="status">Needs photo</span></div>
-    <div class="capdef" id="switch-def">Boxes plumb, level and at a consistent height; wires neat and made up; no cracked or loose boxes.</div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="5" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="5" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-6">
-    <div class="top"><span class="cap">Smoke detector locations</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="6" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="6" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-7">
-    <div class="top"><span class="cap">Dining room fan box</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="7" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="7" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-8">
-    <div class="top"><span class="cap">Kitchen outlets</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="8" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="8" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-9">
-    <div class="top"><span class="cap">Nail plates &amp; cable supports</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="9" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="9" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-10">
-    <div class="top"><span class="cap">Bathroom vanity boxes</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="10" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="10" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-11">
-    <div class="top"><span class="cap">Laundry &amp; dryer</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="11" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="11" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-12">
-    <div class="top"><span class="cap">Range &amp; water heater</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="12" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="12" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-13">
-    <div class="top"><span class="cap">HVAC power &amp; disconnects</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="13" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="13" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-14">
-    <div class="top"><span class="cap">Exterior &amp; garage boxes</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="14" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="14" data-phase="rough"></label>
-    </div>
-  </div>
-  <div class="capcard" id="cap-15">
-    <div class="top"><span class="cap">Sealed penetrations</span><span class="status">Needs photo</span></div>
-    <div class="btns">
-      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="15" data-phase="rough"></label>
-      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="15" data-phase="rough"></label>
-    </div>
-  </div>
   </div>
   <div class="section" id="phase-trim" hidden>
     <h2><span data-i18n="trimIn">Electrical Trim</span> — <span id="trim-done">0 of 12 done</span></h2>
@@ -415,5 +309,5 @@
   <label class="ogal"><span data-i18n="otherGallery">Other gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="other"></label>
 </div></div>
 <script>window.JOB_PAGE = { id: "3131", address: "3131 W Eunice Dr, Dunnellon, FL" };</script>
-<script src="../app.js?v=7"></script>
+<script src="../app.js?v=8"></script>
 </body></html>

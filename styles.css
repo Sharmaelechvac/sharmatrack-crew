@@ -381,3 +381,20 @@ body:has(.wrap.home){background:#fff}
 .st-footer img{height:46px;width:auto}
 .st-footer .dev-credit{margin-top:5px}
 .st-tag{font-size:.72rem;font-weight:800;letter-spacing:.28em;color:#2f7fc4;margin-top:6px;text-align:center}
+
+/* Photo wrap + watermark overlay (live photos; migrated files carry it burned in) */
+.tiles .phwrap{position:relative;display:block}
+.tiles img.zoomable{cursor:zoom-in}
+.wm{position:absolute;inset:0;pointer-events:none;display:block}
+.tiles .wm-logo,.lightbox .wm-logo{position:absolute;top:6px;left:6px;width:38%;height:auto;object-fit:contain;border-radius:0}
+.wm-info{position:absolute;left:8px;bottom:6px;color:#fff;font-weight:700;font-size:11px;line-height:1.35;text-shadow:0 1px 3px rgba(0,0,0,.9);text-align:left}
+/* Lightbox: tap a photo to expand it on the same page */
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(8,10,14,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px}
+.lightbox[hidden]{display:none}
+.lightbox .lbwrap{position:relative;display:inline-block;line-height:0}
+.lightbox .lbwrap>img{max-width:94vw;max-height:82vh;object-fit:contain;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.5)}
+.lightbox .wm-logo{top:10px;left:10px}
+.lightbox .wm-info{font-size:15px;left:12px;bottom:10px}
+.lightbox .lb-cap{margin-top:12px;color:#f2f4f7;font-size:15px;text-align:center;max-width:92vw;line-height:1.4}
+.lightbox .lb-close{position:absolute;top:calc(10px + env(safe-area-inset-top));right:14px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:26px;line-height:1;cursor:pointer;z-index:2}
+body.lb-open{overflow:hidden}

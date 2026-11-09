@@ -70,7 +70,7 @@
       uploading: "Uploading…", uploaded: "Uploaded.", uploadFail: "Upload failed — try again.",
       gpsOff: "GPS unavailable", photoBy: "by",
       panelSchedule: "Panel schedule", meterSchedule: "Meter schedule",
-      jobDetails: "Job details", permitNo: "Permit #", lotNo: "Lot #", inspection: "Inspection",
+      jobDetails: "Job details", photosWord: "photos", tugCapPh: "Write a caption for the photo(s)", permitNo: "Permit #", lotNo: "Lot #", inspection: "Inspection",
       inspNone: "Not requested", inspRequested: "Requested", inspPassed: "Passed", inspFailed: "Failed",
       failReason: "Reason", crewLbl: "Assigned to", workDate: "Work date",
       edit: "Edit", save: "Save", cancel: "Cancel",
@@ -96,7 +96,7 @@
       uploading: "Subiendo…", uploaded: "Subido.", uploadFail: "La subida falló — inténtalo de nuevo.",
       gpsOff: "GPS no disponible", photoBy: "por",
       panelSchedule: "Esquema del panel", meterSchedule: "Esquema del medidor",
-      jobDetails: "Datos del trabajo", permitNo: "Permiso #", lotNo: "Lote #", inspection: "Inspección",
+      jobDetails: "Datos del trabajo", photosWord: "fotos", tugCapPh: "Escribe un t\u00edtulo para la(s) foto(s)", permitNo: "Permiso #", lotNo: "Lote #", inspection: "Inspección",
       inspNone: "No solicitada", inspRequested: "Solicitada", inspPassed: "Aprobada", inspFailed: "Reprobada",
       failReason: "Motivo", crewLbl: "Asignado a", workDate: "Fecha del trabajo",
       edit: "Editar", save: "Guardar", cancel: "Cancelar",
@@ -122,7 +122,7 @@
       uploading: "Enviando…", uploaded: "Enviado.", uploadFail: "O envio falhou — tente de novo.",
       gpsOff: "GPS indisponível", photoBy: "por",
       panelSchedule: "Esquema do quadro", meterSchedule: "Esquema do medidor",
-      jobDetails: "Dados do trabalho", permitNo: "Alvará #", lotNo: "Lote #", inspection: "Inspeção",
+      jobDetails: "Dados do trabalho", photosWord: "fotos", tugCapPh: "Escreva uma legenda para a(s) foto(s)", permitNo: "Alvará #", lotNo: "Lote #", inspection: "Inspeção",
       inspNone: "Não solicitada", inspRequested: "Solicitada", inspPassed: "Aprovada", inspFailed: "Reprovada",
       failReason: "Motivo", crewLbl: "Responsável", workDate: "Data do trabalho",
       edit: "Editar", save: "Salvar", cancel: "Cancelar",
@@ -305,11 +305,11 @@
     var n = document.getElementById("upload-note");
     if (n) n.textContent = txt;
   }
-  function handleFiles(fileList, phaseName, captionIdx) {
+  function handleFiles(fileList, phaseName, captionIdx, freeCaption) {
     var name = getName();
     if (!fileList || !fileList.length) return;
     var files = Array.prototype.slice.call(fileList);
-    var caption = captionIdx == null ? "Other photos" : listFor(phaseName)[captionIdx].en;
+    var caption = freeCaption != null ? "ROUGH \u00b7 " + (String(freeCaption).trim() || "Photo") : captionIdx == null ? "Other photos" : listFor(phaseName)[captionIdx].en;
     setNote(t().uploading);
     getPosition().then(function (pos) {
       var chain = Promise.resolve();
@@ -437,8 +437,53 @@
       var cap = parts.join(" · ");
       html += "<figure>" + (isVideo
         ? '<video src="' + u + '" controls preload="metadata"></video>'
-        : '<a href="' + u + '" target="_blank" rel="noopener"><img src="' + u + '" alt="" loading="lazy"></a>') +
+        : '<span class="phwrap"><img class="zoomable" src="' + u + '" alt="" loading="lazy">' + (p.seed ? "" : wmHtml(p)) + '</span>') +
         "<figcaption>" + cap + "</figcaption></figure>";
+    });
+    return html + "</div>";
+  }
+  function builderName() {
+    var chip = document.querySelector(".builder-chip span");
+    if (!chip) return "";
+    var txt = chip.textContent || "";
+    var i = txt.indexOf(":");
+    return (i >= 0 ? txt.slice(i + 1) : txt).trim();
+  }
+  function photoDateLine(p) {
+    if (!p.taken_at) return "";
+    var d = new Date(p.taken_at);
+    if (isNaN(d)) return "";
+    var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    var pad = function (n) { return (n < 10 ? "0" : "") + n; };
+    return days[d.getDay()] + " " + pad(d.getMonth() + 1) + "/" + pad(d.getDate()) + "/" + d.getFullYear();
+  }
+  /* Watermark overlay for live (backend) photos — migrated seed files carry it burned in. */
+  function wmHtml(p) {
+    var lines = [JOB.address];
+    var b = builderName(); if (b) lines.push("Builder: " + b);
+    var dl = photoDateLine(p); if (dl) lines.push(dl);
+    return '<span class="wm"><img class="wm-logo" src="../logo-wm.png" alt="">' +
+      '<span class="wm-info">' + lines.map(esc).join("<br>") + '</span></span>';
+  }
+  function isFreePhoto(p) {
+    if (!p || !p.caption) return false;
+    if (p.caption.indexOf("ROUGH \u00b7 ") === 0) return true;
+    return ROUGH.some(function (c) { return p.caption === c.en; });
+  }
+  function freeTilesHtml(rows) {
+    if (!rows.length) return "";
+    var html = '<div class="tiles">';
+    rows.forEach(function (p) {
+      var u = esc(fileUrl(p));
+      var isVideo = /\.(mp4|mov|webm|m4v)$/i.test(p.key || p.url || "") || (p.content_type || "").indexOf("video") === 0;
+      var capText = p.caption.indexOf("ROUGH \u00b7 ") === 0 ? p.caption.slice(8) : p.caption;
+      var parts = [];
+      if (p.uploader) parts.push(esc(p.uploader));
+      if (p.taken_at) parts.push(esc(new Date(p.taken_at).toLocaleString()));
+      html += "<figure>" + (isVideo
+        ? '<video src="' + u + '" controls preload="metadata"></video>'
+        : '<span class="phwrap"><img class="zoomable" src="' + u + '" alt="" loading="lazy">' + (p.seed ? "" : wmHtml(p)) + '</span>') +
+        "<figcaption><b>" + esc(capText) + "</b>" + (parts.length ? "<span>" + parts.join(" \u00b7 ") + "</span>" : "") + "</figcaption></figure>";
     });
     return html + "</div>";
   }
@@ -458,17 +503,21 @@
   }
   function renderPhotos() {
     var merged = allPhotos();
-    var roughDone = renderList("rough", merged);
+    var roughRows = merged.filter(isFreePhoto);
+    var roughTilesEl = document.getElementById("rough-tiles");
+    if (roughTilesEl) roughTilesEl.innerHTML = freeTilesHtml(roughRows);
+    var roughDone = roughRows.length;
     var trimDone = renderList("trim", merged);
     // Other photos — one shared section under both tabs
     var other = document.getElementById("other-tiles");
     if (other) other.innerHTML = tilesFor(null, null);
     // Section headings carry each phase's own count
-    var rd = document.getElementById("rough-done"); if (rd) rd.textContent = roughDone + " " + t().done16;
+    var rd = document.getElementById("rough-done"); if (rd) rd.textContent = roughDone + " " + t().photosWord;
     var td = document.getElementById("trim-done"); if (td) td.textContent = trimDone + " " + t().done12;
     // Ring + job bar reflect the ACTIVE phase
     var done = phase === "trim" ? trimDone : roughDone;
     var total = listFor(phase).length;
+    if (phase === "rough") total = roughDone || 1;
     var pct = total ? done / total : 0;
     var ring = document.getElementById("ring-fg");
     if (ring) {
@@ -477,10 +526,11 @@
       ring.style.strokeDashoffset = C * (1 - pct);
     }
     var label = done + "/" + total;
+    if (phase === "rough") label = String(roughDone);
     var num = document.getElementById("ring-num"); if (num) num.textContent = label;
     var jbn = document.getElementById("jobbar-num"); if (jbn) jbn.textContent = label;
     var sub = document.getElementById("ring-sub");
-    if (sub) sub.textContent = done + " " + (phase === "trim" ? t().captions12 : t().captions16);
+    if (sub) sub.textContent = phase === "rough" ? done + " " + t().photosWord : done + " " + (phase === "trim" ? t().captions12 : t().captions16);
   }
   function applyPhase() {
     var r = document.getElementById("phase-rough");
@@ -536,7 +586,12 @@
   document.querySelectorAll("input[type=file][data-caption]").forEach(function (inp) {
     inp.addEventListener("change", function () {
       var idx = inp.getAttribute("data-caption");
-      if (idx === "other") handleFiles(inp.files, null, null);
+      if (idx === "roughfree") {
+        var fc = document.getElementById("rough-caption");
+        handleFiles(inp.files, "rough", null, fc ? fc.value : "");
+        if (fc) fc.value = "";
+      }
+      else if (idx === "other") handleFiles(inp.files, null, null);
       else handleFiles(inp.files, inp.getAttribute("data-phase") || "rough", Number(idx));
       inp.value = "";
     });
@@ -563,6 +618,38 @@
     if (jmStatus) jmStatus.addEventListener("change", syncReasonRow);
     jmForm.addEventListener("submit", saveJobMeta);
   }
+  /* ---------- Lightbox: photos expand on this page ---------- */
+  var lbEl = null, lbStage = null, lbCap = null;
+  function ensureLightbox() {
+    if (lbEl) return;
+    lbEl = document.createElement("div");
+    lbEl.className = "lightbox"; lbEl.hidden = true;
+    lbEl.innerHTML = '<button type="button" class="lb-close" aria-label="Close">\u00d7</button><span class="phwrap lbwrap"><img alt=""></span><div class="lb-cap"></div>';
+    document.body.appendChild(lbEl);
+    lbStage = lbEl.querySelector(".lbwrap"); lbCap = lbEl.querySelector(".lb-cap");
+    lbEl.addEventListener("click", function (e) { if (!e.target.closest || !e.target.closest(".lbwrap")) closeLightbox(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLightbox(); });
+  }
+  function openLightbox(img) {
+    ensureLightbox();
+    lbStage.querySelectorAll(".wm").forEach(function (n) { n.remove(); });
+    lbStage.querySelector("img").src = img.getAttribute("src");
+    var wrap = img.closest(".phwrap");
+    var wm = wrap ? wrap.querySelector(".wm") : null;
+    if (wm) lbStage.appendChild(wm.cloneNode(true));
+    var fig = img.closest("figure");
+    var capEl = fig ? fig.querySelector("figcaption") : null;
+    lbCap.textContent = capEl ? capEl.textContent.trim() : "";
+    lbEl.hidden = false; document.body.classList.add("lb-open");
+  }
+  function closeLightbox() {
+    if (!lbEl) return;
+    lbEl.hidden = true; document.body.classList.remove("lb-open");
+  }
+  document.addEventListener("click", function (e) {
+    var img = e.target && e.target.closest ? e.target.closest("img.zoomable") : null;
+    if (img) openLightbox(img);
+  });
   applyPhase();
   renderText();
   fetchPhotos();
