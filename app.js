@@ -176,14 +176,26 @@
     out.sort(function (a, b) { return new Date(a.taken_at || 0) - new Date(b.taken_at || 0); });
     return out;
   }
+  /* Directory this script was loaded from = the app root. Seed files live
+     there; resolving them against it keeps them working when the site is
+     served from a subpath (e.g. GitHub Pages project sites). */
+  var SCRIPT_BASE = "";
+  try {
+    var _cs = document.currentScript;
+    if (_cs && _cs.src) SCRIPT_BASE = _cs.src.replace(/[^\/]*$/, "");
+  } catch (e) {}
+  function seedUrl(u) {
+    u = String(u || "");
+    return u.charAt(0) === "/" ? SCRIPT_BASE + u.slice(1) : u;
+  }
   function fetchSeeds() {
-    return fetch("/seed-photos.json")
+    return fetch(SCRIPT_BASE + "seed-photos.json")
       .then(function (r) { return r.ok ? r.json() : []; })
       .then(function (rows) {
         seeds = (Array.isArray(rows) ? rows : []).filter(function (s) { return s.job === JOB.id; })
           .map(function (s) {
             return {
-              seed: true, caption: s.caption, url: s.url, name: s.name || "",
+              seed: true, caption: s.caption, url: seedUrl(s.url), name: s.name || "",
               uploader: "", taken_at: s.taken_at || null, lat: null, lng: null,
               content_type: s.media_type || ""
             };
