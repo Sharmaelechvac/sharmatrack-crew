@@ -189,7 +189,7 @@
     return u.charAt(0) === "/" ? SCRIPT_BASE + u.slice(1) : u;
   }
   function fetchSeeds() {
-    return fetch(SCRIPT_BASE + "seed-photos.json")
+    return fetch(SCRIPT_BASE + "seed-photos.json", { cache: "no-store" })
       .then(function (r) { return r.ok ? r.json() : []; })
       .then(function (rows) {
         seeds = (Array.isArray(rows) ? rows : []).filter(function (s) { return s.job === JOB.id; })
