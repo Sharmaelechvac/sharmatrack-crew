@@ -398,3 +398,13 @@ body:has(.wrap.home){background:#fff}
 .lightbox .lb-cap{margin-top:12px;color:#f2f4f7;font-size:15px;text-align:center;max-width:92vw;line-height:1.4}
 .lightbox .lb-close{position:absolute;top:calc(10px + env(safe-area-inset-top));right:14px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:26px;line-height:1;cursor:pointer;z-index:2}
 body.lb-open{overflow:hidden}
+
+/* Free-form caption block (ported from the EXJ tracker — was missing here) */
+.freecap{margin-top:12px}
+.freecap input[type=file]{display:none}
+.freecap input[type=text]{width:100%;box-sizing:border-box;padding:12px 14px;border:1.5px solid #c9d9ec;border-radius:14px;font:inherit;font-size:1rem;margin-bottom:10px;background:#fff;color:var(--ink)}
+.freecap .btns{display:flex;gap:8px}
+.freecap .btns label{flex:1;text-align:center;color:#fff;font-weight:800;padding:13px 6px;border-radius:999px;cursor:pointer;text-transform:uppercase;letter-spacing:.03em}
+.freecap .btns label:active{transform:scale(.97)}
+.freecap .btns .cam{background:linear-gradient(135deg,var(--brand2),var(--brand));box-shadow:0 8px 18px rgba(0,88,163,.3)}
+.freecap .btns .gal{background:#fff;color:#004585;border:1.5px solid #0058a3;box-shadow:0 8px 18px rgba(0,88,163,.12)}
