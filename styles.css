@@ -408,3 +408,7 @@ body.lb-open{overflow:hidden}
 .freecap .btns label:active{transform:scale(.97)}
 .freecap .btns .cam{background:linear-gradient(135deg,var(--brand2),var(--brand));box-shadow:0 8px 18px rgba(0,88,163,.3)}
 .freecap .btns .gal{background:#fff;color:#004585;border:1.5px solid #0058a3;box-shadow:0 8px 18px rgba(0,88,163,.12)}
+
+/* Address clarity (Sanjay, 2026-11-10): never cut the address off in the sticky bar; city line dark + bold */
+.jobbar .jb-addr{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.15}
+.hero .city{color:#004585;font-weight:700}
