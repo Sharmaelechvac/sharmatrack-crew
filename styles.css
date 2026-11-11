@@ -412,3 +412,8 @@ body.lb-open{overflow:hidden}
 /* Address clarity (Sanjay, 2026-11-10): never cut the address off in the sticky bar; city line dark + bold */
 .jobbar .jb-addr{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.15}
 .hero .city{color:#004585;font-weight:700}
+
+/* Completed job markers */
+.chip.done{background:#e5f6ec;color:#12703c;border:1.5px solid #b7e3c6;font-weight:800;letter-spacing:.04em}
+.donebadge{background:#12703c;color:#fff;font-weight:800;font-size:.78rem;letter-spacing:.05em;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.jm-rows dd.done{color:#12703c;font-weight:800;letter-spacing:.03em}
