@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en" class="sk" data-theme="track"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SHARMATRACK — Job Tracker</title>
+<meta name="theme-color" content="#0058a3"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="SHARMATRACK"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="https://sharma-kit.sharma-crew.workers.dev/assets/apple-touch-icon-track.png"><link rel="stylesheet" href="https://sharma-kit.sharma-crew.workers.dev/sharma-kit.css"><script src="https://sharma-kit.sharma-crew.workers.dev/sharma-kit.js" defer></script>
 <link rel="stylesheet" href="styles.css?v=15">
+<link rel="stylesheet" href="sk-bridge.css?v=1">
 <link rel="icon" href="sharmatrack-app-icon.png">
 <link rel="apple-touch-icon" href="sharmatrack-app-icon.png">
-</head><body>
+</head><body class="sk">
+<div class="sk-offline" aria-live="polite"></div>
 
 <div class="langbar" role="group" aria-label="Language">
-  <span class="lbl" data-i18n="language">Language</span>
-  <button type="button" data-lang="en" class="on">🇺🇸 English</button>
-  <button type="button" data-lang="es">🇲🇽 Español</button>
-  <button type="button" data-lang="pt">🇧🇷 Português</button>
+ <span class="lbl" data-i18n="language">Language</span>
+ <button type="button" data-lang="en" class="on"> English</button>
+ <button type="button" data-lang="es"> Español</button>
+ <button type="button" data-lang="pt"> Português</button>
 </div>
 <div class="wrap nobar home">
   <div class="duo"><span class="duo-card"><img class="duo-sharma" src="logo.png" alt="Sharma Electric &amp; HVAC"></span><span class="duo-card"><img class="duo-zb" src="zbrothers-logo-color.png" alt="Z Brothers Construction"><span class="duo-zbtxt"><b>Z BROTHERS</b><i>CONSTRUCTION</i></span></span></div>
@@ -22,9 +25,10 @@
   <a class="jobbtn" href="3274/" data-jobcard="3274" data-search="3274 w eunice dr dunnellon fl z brothers nona"><span class="a">3274 W Eunice Dr</span><span class="b">Dunnellon, FL</span><span class="b2">Z Brothers · Plan: NONA · Electrical Rough-in · Living SF: 1,661 · Under Roof SF: 2,243</span><span class="crow"><span class="prog" data-prog>—/16</span><span class="chip" data-chip hidden></span></span><span class="donebadge">COMPLETED</span><span class="arr">→</span></a>
   <a class="jobbtn" href="3286/" data-jobcard="3286" data-search="3286 w eunice dr dunnellon fl z brothers nona"><span class="a">3286 W Eunice Dr</span><span class="b">Dunnellon, FL</span><span class="b2">Z Brothers · Plan: NONA · Electrical Rough-in · Living SF: 1,661 · Under Roof SF: 2,243</span><span class="crow"><span class="prog" data-prog>—/16</span><span class="chip" data-chip hidden></span></span><span class="donebadge">COMPLETED</span><span class="arr">→</span></a>
   <h2 data-i18n="employees">Employees</h2>
-  <a class="greenbtn" href="code-of-conduct/" data-i18n="coc">📃 Code of Conduct →</a>
+  <a class="greenbtn" href="code-of-conduct/" data-i18n="coc"> Code of Conduct →</a>
   <div class="home-lic">Sharma Electric &amp; HVAC · Lic. EC13013924 · CAC1823596</div>
   <div class="st-footer"><a class="st-link" href="https://sharmaelechvac.github.io/sharmatrack" target="_blank" rel="noopener"><img src="sharmatrack-logo-blue-on-white.png" alt="SHARMATRACK"></a><div class="st-tag">JOB TRACKER</div><div class="dev-credit">Developed by Sanjay Sharma</div></div>
 </div>
 <script src="home.js?v=8"></script>
+<script src="sk-init.js?v=1" defer></script>
 </body></html>

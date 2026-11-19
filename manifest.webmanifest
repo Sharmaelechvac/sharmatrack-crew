@@ -1,0 +1,24 @@
+{
+  "name": "SHARMATRACK Job Tracker \u00b7 Sharma Electric & HVAC",
+  "short_name": "SHARMATRACK",
+  "description": "SHARMATRACK job tracker by Sharma Electric & HVAC.",
+  "id": ".",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2F4F8",
+  "theme_color": "#0058a3",
+  "icons": [
+    {
+      "src": "https://sharma-kit.sharma-crew.workers.dev/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://sharma-kit.sharma-crew.workers.dev/assets/icon-512-track.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

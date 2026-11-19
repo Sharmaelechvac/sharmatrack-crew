@@ -1,0 +1,53 @@
+/* Sharma kit bridge for SHARMATRACK tracker pages (kit v1.2, Track theme).
+   Maps the trackers' existing markup onto kit tokens: system font, Track blue
+   #0058a3, 12-14px corners, kit status pills, 44px taps, press states, dark mode.
+   Loaded AFTER the app's own styles.css. Look only — no data or behaviour. */
+html.sk body.sk{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:17px; line-height:1.45;
+  -webkit-tap-highlight-color:transparent;
+}
+/* Cards and sections take the kit shape */
+html.sk .jobbtn, html.sk .card, html.sk .capcard, html.sk .section, html.sk .gear .card{
+  border-radius:14px; box-shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.05);
+}
+html.sk .jobbtn{ transition:transform .12s ease, background .12s ease; }
+html.sk .jobbtn:active, html.sk .card:active, html.sk .greenbtn:active,
+html.sk .mapsbtn:active, html.sk button:active{ transform:scale(.985); }
+/* Status = kit pills (5 words). Red stays reserved for late/Problem only. */
+html.sk .chip, html.sk .donebadge, html.sk .st-pill, html.sk .pill{
+  border-radius:999px; font-weight:600; letter-spacing:.01em;
+}
+html.sk .chip.st0{ background:#E9EDF3; color:#3C4658; }
+html.sk .chip.st1{ background:rgba(0,88,163,.14); color:#0058a3; }
+html.sk .chip.st2, html.sk .chip.done, html.sk .donebadge{ background:#E4F5E9; color:#1D7A3A; }
+/* Bars and tabs: solid white, hairline border, taps >= 44px */
+html.sk .jobbar{ background:#fff; border-bottom:1px solid #D9E2EC; }
+html.sk .langbar button{ min-height:44px; border-radius:999px; }
+html.sk .phasetabs button{ min-height:44px; border-radius:999px; }
+html.sk .phasetabs button.on{ background:#0058a3; color:#fff; }
+html.sk .searchbar input{ min-height:48px; border-radius:12px; font-size:17px; }
+html.sk .greenbtn{ border-radius:12px; min-height:48px; }
+html.sk .dvbar button, html.sk .dvtabs button{ min-height:44px; }
+/* Numbers line up */
+html.sk .prog, html.sk .jb-num, html.sk .num, html.sk .dvcount{ font-variant-numeric:tabular-nums; }
+/* Skeleton shimmer for photo tiles still loading */
+@keyframes skShimmer{ 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+html.sk .tile.loading, html.sk .capcard.loading{
+  background:linear-gradient(90deg,#EDF1F6 25%,#F7FAFC 40%,#EDF1F6 60%);
+  background-size:800px 100%; animation:skShimmer 1.4s infinite linear; min-height:96px;
+}
+@media (prefers-reduced-motion: reduce){ html.sk *{ animation:none!important; transition:none!important; } }
+/* Dark mode (follows the phone, like the kit) */
+@media (prefers-color-scheme: dark){
+  html.sk body.sk{ background:#0E1116; color:#F2F4F8; }
+  html.sk .wrap, html.sk .hero, html.sk .section, html.sk .jobbtn, html.sk .card,
+  html.sk .capcard, html.sk .dvmap, html.sk .dvbar{ background:#1C1C1E; color:#F2F4F8; border-color:#33373D; }
+  html.sk .jobbar, html.sk .langbar, html.sk .namebar{ background:#1C1C1E; color:#F2F4F8; border-color:#33373D; }
+  html.sk .chip.st0{ background:#2C2C2E; color:#C7CEDA; }
+  html.sk .chip.st1{ background:rgba(90,169,240,.22); color:#8CC4F5; }
+  html.sk .chip.st2, html.sk .chip.done, html.sk .donebadge{ background:rgba(52,199,89,.2); color:#5BD98A; }
+  html.sk h1, html.sk h2, html.sk h3, html.sk .a{ color:#F2F4F8; }
+  html.sk .b, html.sk .b2, html.sk .ps, html.sk .dvhint{ color:#A7B0BE; }
+  html.sk input, html.sk select, html.sk textarea{ background:#2C2C2E; color:#F2F4F8; border-color:#3A3F46; }
+}
