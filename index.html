@@ -2,33 +2,50 @@
 <html lang="en" class="sk" data-theme="track"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SHARMATRACK — Job Tracker</title>
-<meta name="theme-color" content="#0058a3"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="SHARMATRACK"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="https://sharma-kit.sharma-crew.workers.dev/assets/apple-touch-icon-track.png"><link rel="stylesheet" href="https://sharma-kit.sharma-crew.workers.dev/sharma-kit.css"><script src="https://sharma-kit.sharma-crew.workers.dev/sharma-kit.js" defer></script>
-<link rel="stylesheet" href="styles.css?v=15">
-<link rel="stylesheet" href="sk-bridge.css?v=1">
+<meta name="theme-color" content="#ffffff"><meta name="color-scheme" content="light"><script>(function(){try{if(localStorage.getItem("sk-scheme")==="dark"){var d=document.documentElement;d.setAttribute("data-scheme","dark");var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=d.getAttribute("data-theme")==="track"?"#1C1C1E":"#1a2f61"}}catch(e){}})()</script><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="SHARMATRACK"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="https://sharma-kit.sharma-crew.workers.dev/assets/apple-touch-icon-track.png"><link rel="stylesheet" href="https://sharma-kit.sharma-crew.workers.dev/sharma-kit.css"><script src="https://sharma-kit.sharma-crew.workers.dev/sharma-kit.js" defer></script>
+<link rel="stylesheet" href="styles.css?v=16">
+<link rel="stylesheet" href="sk-bridge.css?v=4">
+<link rel="stylesheet" href="spa.css?v=3">
 <link rel="icon" href="sharmatrack-app-icon.png">
 <link rel="apple-touch-icon" href="sharmatrack-app-icon.png">
 </head><body class="sk">
+<header class="sk-header"><div class="sk-header__bar">
+  <div class="sk-header__lead"><a class="sk-header__logo" href="#/" aria-label="SHARMATRACK home"><img src="sharmatrack-mark-blue.png" alt="SHARMATRACK"></a></div>
+  <div class="sk-header__title">SHARMATRACK</div>
+  <div class="sk-header__trail"><button class="sk-header__btn" id="spa-lang-btn" type="button" aria-label="Language"><svg class="sk-icon"><use href="#i-globe"/></svg></button><a class="sk-header__btn" href="#/more" id="spa-more-btn" aria-label="More"><svg class="sk-icon"><use href="#i-more"/></svg></a></div>
+</div></header>
 <div class="sk-offline" aria-live="polite"></div>
-
-<div class="langbar" role="group" aria-label="Language">
- <span class="lbl" data-i18n="language">Language</span>
- <button type="button" data-lang="en" class="on"> English</button>
- <button type="button" data-lang="es"> Español</button>
- <button type="button" data-lang="pt"> Português</button>
-</div>
+<main id="app" class="sk-stackview"></main>
+<section class="sk-sheet" id="lang-sheet" aria-labelledby="lang-sheet-title">
+  <div class="sk-sheet__grab"></div>
+  <div class="sk-sheet__head">
+    <button class="sk-btn sk-btn--text" type="button" data-sheet-close>Cancel</button>
+    <div class="sk-sheet__title" id="lang-sheet-title" data-i18n="language">Language</div>
+    <span></span>
+  </div>
+  <div class="sk-sheet__body">
+    <div class="langbar langbar--sheet" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="on">English</button>
+      <button type="button" data-lang="es">Español</button>
+      <button type="button" data-lang="pt">Português</button>
+    </div>
+  </div>
+</section>
+<template id="hub-tpl">
 <div class="wrap nobar home">
-  <div class="duo"><span class="duo-card"><img class="duo-sharma" src="logo.png" alt="Sharma Electric &amp; HVAC"></span><span class="duo-card"><img class="duo-zb" src="zbrothers-logo-color.png" alt="Z Brothers Construction"><span class="duo-zbtxt"><b>Z BROTHERS</b><i>CONSTRUCTION</i></span></span></div>
-  <h2 data-i18n="crewJobs">Crew jobs</h2>
+  <h2 data-i18n="crewJobs">Jobs</h2>
   <div class="searchbar"><input id="job-search" type="search" autocomplete="off" placeholder="Search address, city, builder…"></div>
-  <a class="jobbtn" href="3131/" data-jobcard="3131" data-search="3131 w eunice dr dunnellon fl z brothers nona"><span class="a">3131 W Eunice Dr</span><span class="b">Dunnellon, FL</span><span class="b2">Z Brothers · Plan: NONA · Electrical Rough-in · Living SF: 1,661 · Under Roof SF: 2,243</span><span class="crow"><span class="prog" data-prog>—/16</span><span class="chip" data-chip hidden></span></span><span class="donebadge">COMPLETED</span><span class="arr">→</span></a>
-  <a class="jobbtn" href="3262/" data-jobcard="3262" data-search="3262 w eunice dr dunnellon fl z brothers nona"><span class="a">3262 W Eunice Dr</span><span class="b">Dunnellon, FL</span><span class="b2">Z Brothers · Plan: NONA · Electrical Rough-in · Living SF: 1,661 · Under Roof SF: 2,243</span><span class="crow"><span class="prog" data-prog>—/16</span><span class="chip" data-chip hidden></span></span><span class="donebadge">COMPLETED</span><span class="arr">→</span></a>
-  <a class="jobbtn" href="3274/" data-jobcard="3274" data-search="3274 w eunice dr dunnellon fl z brothers nona"><span class="a">3274 W Eunice Dr</span><span class="b">Dunnellon, FL</span><span class="b2">Z Brothers · Plan: NONA · Electrical Rough-in · Living SF: 1,661 · Under Roof SF: 2,243</span><span class="crow"><span class="prog" data-prog>—/16</span><span class="chip" data-chip hidden></span></span><span class="donebadge">COMPLETED</span><span class="arr">→</span></a>
-  <a class="jobbtn" href="3286/" data-jobcard="3286" data-search="3286 w eunice dr dunnellon fl z brothers nona"><span class="a">3286 W Eunice Dr</span><span class="b">Dunnellon, FL</span><span class="b2">Z Brothers · Plan: NONA · Electrical Rough-in · Living SF: 1,661 · Under Roof SF: 2,243</span><span class="crow"><span class="prog" data-prog>—/16</span><span class="chip" data-chip hidden></span></span><span class="donebadge">COMPLETED</span><span class="arr">→</span></a>
+  <a class="jobbtn" href="3131/" data-jobcard="3131" data-search="3131 w eunice dr dunnellon fl z brothers nona"><span class="a">3131 W Eunice Dr</span><span class="b">Dunnellon, FL</span><span class="b2"><span class="blogo"><img src="zbrothers-logo-color.png" alt="" onerror="this.remove()"><span class="blogo__init" aria-hidden="true">ZB</span></span>Z Brothers · Plan: NONA · Electrical Rough-in · Living SF: 1,661 · Under Roof SF: 2,243</span><span class="crow"><span class="prog" data-prog>—/16</span><span class="chip" data-chip hidden></span></span><span class="donebadge">Done</span><span class="arr"><svg class="sk-icon"><use href="#i-chevron-right"/></svg></span></a>
+  <a class="jobbtn" href="3262/" data-jobcard="3262" data-search="3262 w eunice dr dunnellon fl z brothers nona"><span class="a">3262 W Eunice Dr</span><span class="b">Dunnellon, FL</span><span class="b2"><span class="blogo"><img src="zbrothers-logo-color.png" alt="" onerror="this.remove()"><span class="blogo__init" aria-hidden="true">ZB</span></span>Z Brothers · Plan: NONA · Electrical Rough-in · Living SF: 1,661 · Under Roof SF: 2,243</span><span class="crow"><span class="prog" data-prog>—/16</span><span class="chip" data-chip hidden></span></span><span class="donebadge">Done</span><span class="arr"><svg class="sk-icon"><use href="#i-chevron-right"/></svg></span></a>
+  <a class="jobbtn" href="3274/" data-jobcard="3274" data-search="3274 w eunice dr dunnellon fl z brothers nona"><span class="a">3274 W Eunice Dr</span><span class="b">Dunnellon, FL</span><span class="b2"><span class="blogo"><img src="zbrothers-logo-color.png" alt="" onerror="this.remove()"><span class="blogo__init" aria-hidden="true">ZB</span></span>Z Brothers · Plan: NONA · Electrical Rough-in · Living SF: 1,661 · Under Roof SF: 2,243</span><span class="crow"><span class="prog" data-prog>—/16</span><span class="chip" data-chip hidden></span></span><span class="donebadge">Done</span><span class="arr"><svg class="sk-icon"><use href="#i-chevron-right"/></svg></span></a>
+  <a class="jobbtn" href="3286/" data-jobcard="3286" data-search="3286 w eunice dr dunnellon fl z brothers nona"><span class="a">3286 W Eunice Dr</span><span class="b">Dunnellon, FL</span><span class="b2"><span class="blogo"><img src="zbrothers-logo-color.png" alt="" onerror="this.remove()"><span class="blogo__init" aria-hidden="true">ZB</span></span>Z Brothers · Plan: NONA · Electrical Rough-in · Living SF: 1,661 · Under Roof SF: 2,243</span><span class="crow"><span class="prog" data-prog>—/16</span><span class="chip" data-chip hidden></span></span><span class="donebadge">Done</span><span class="arr"><svg class="sk-icon"><use href="#i-chevron-right"/></svg></span></a>
   <h2 data-i18n="employees">Employees</h2>
-  <a class="greenbtn" href="code-of-conduct/" data-i18n="coc"> Code of Conduct →</a>
+  <a class="greenbtn" href="code-of-conduct/" data-i18n="coc">Code of Conduct</a>
   <div class="home-lic">Sharma Electric &amp; HVAC · Lic. EC13013924 · CAC1823596</div>
   <div class="st-footer"><a class="st-link" href="https://sharmaelechvac.github.io/sharmatrack" target="_blank" rel="noopener"><img src="sharmatrack-logo-blue-on-white.png" alt="SHARMATRACK"></a><div class="st-tag">JOB TRACKER</div><div class="dev-credit">Developed by Sanjay Sharma</div></div>
 </div>
-<script src="home.js?v=8"></script>
-<script src="sk-init.js?v=1" defer></script>
+</template>
+<script src="spa.js?v=4" defer></script>
+<script src="home.js?v=10" defer></script>
+<script src="sk-init.js?v=2" defer></script>
 </body></html>

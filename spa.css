@@ -1,0 +1,25 @@
+/* SHARMATRACK one-page shell adjustments (kit v1.2 SK.stack).
+   Tracker screens keep their own .wrap layout inside stack pages;
+   the kit page body is reset so the tracker CSS owns the content. */
+.sk-stackview .sk-page__body{ max-width:none; padding:0; background:transparent; }
+.sk-page{ background:var(--sk-bg); }
+.spa-skel{ padding:20px 16px 8px; display:grid; gap:12px; max-width:560px; margin:0 auto; }
+.spa-skel .sk-title{ margin:0 0 4px; }
+.spa-err{ padding:48px 20px; text-align:center; display:grid; gap:14px; justify-items:center; }
+/* the job page name bar stays pinned to the bottom of its stack screen:
+   the kit page's transform makes position:fixed anchor to the screen */
+.sk-page .namebar{ z-index:30; }
+/* large tracker titles inside pushed screens get page-head spacing */
+.sk-page__body .wrap{ padding-top:14px; }
+/* language sheet: the one .langbar lives here, opened from the header globe */
+.langbar--sheet{ flex-direction:column; align-items:stretch; gap:10px; padding:4px 2px 12px; flex-wrap:nowrap; }
+.langbar--sheet button{ min-height:52px; font-size:17px; width:100%; }
+/* job card chevron (kit icon, replaces the text arrow) */
+.jobbtn .arr{ display:inline-flex; align-items:center; color:#0058a3; }
+.jobbtn .arr .sk-icon{ width:22px; height:22px; }
+
+/* More screen footer: SHARMATRACK mark + developer credit in their own
+   block, separate from the license block (Steve's footer rule). */
+.spa-devfoot { text-align:center; padding:28px 16px 8px; }
+.spa-devfoot img { width:44px; height:44px; }
+.spa-devfoot div { margin-top:6px; font-size:13px; color:var(--sk-muted, #6b7a89); }

@@ -421,3 +421,10 @@ body.lb-open{overflow:hidden}
 /* Completed jobs: hide the checklist count row (2026-11-19) */
 .jobbtn:has(.donebadge) .crow{display:none}
 .crow[hidden]{display:none}
+
+/* Builder logo chip (company-logos workstream, 2026-11-19): the real logo
+   file covers a navy initials badge; if the file is missing the badge
+   shows, so a real logo can be dropped in later with no markup change. */
+.blogo { position:relative; display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:8px; background:#0058a3; vertical-align:-9px; margin-right:7px; overflow:hidden; flex:0 0 auto; }
+.blogo__init { color:#fff; font-weight:800; font-size:13px; letter-spacing:.02em; }
+.blogo img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:#fff; }

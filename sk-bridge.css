@@ -27,7 +27,7 @@ html.sk .langbar button{ min-height:44px; border-radius:999px; }
 html.sk .phasetabs button{ min-height:44px; border-radius:999px; }
 html.sk .phasetabs button.on{ background:#0058a3; color:#fff; }
 html.sk .searchbar input{ min-height:48px; border-radius:12px; font-size:17px; }
-html.sk .greenbtn{ border-radius:12px; min-height:48px; }
+html.sk .greenbtn{ border-radius:12px; min-height:48px; background:#0058a3; color:#fff; }
 html.sk .dvbar button, html.sk .dvtabs button{ min-height:44px; }
 /* Numbers line up */
 html.sk .prog, html.sk .jb-num, html.sk .num, html.sk .dvcount{ font-variant-numeric:tabular-nums; }
@@ -38,16 +38,18 @@ html.sk .tile.loading, html.sk .capcard.loading{
   background-size:800px 100%; animation:skShimmer 1.4s infinite linear; min-height:96px;
 }
 @media (prefers-reduced-motion: reduce){ html.sk *{ animation:none!important; transition:none!important; } }
-/* Dark mode (follows the phone, like the kit) */
-@media (prefers-color-scheme: dark){
-  html.sk body.sk{ background:#0E1116; color:#F2F4F8; }
-  html.sk .wrap, html.sk .hero, html.sk .section, html.sk .jobbtn, html.sk .card,
-  html.sk .capcard, html.sk .dvmap, html.sk .dvbar{ background:#1C1C1E; color:#F2F4F8; border-color:#33373D; }
-  html.sk .jobbar, html.sk .langbar, html.sk .namebar{ background:#1C1C1E; color:#F2F4F8; border-color:#33373D; }
-  html.sk .chip.st0{ background:#2C2C2E; color:#C7CEDA; }
-  html.sk .chip.st1{ background:rgba(90,169,240,.22); color:#8CC4F5; }
-  html.sk .chip.st2, html.sk .chip.done, html.sk .donebadge{ background:rgba(52,199,89,.2); color:#5BD98A; }
-  html.sk h1, html.sk h2, html.sk h3, html.sk .a{ color:#F2F4F8; }
-  html.sk .b, html.sk .b2, html.sk .ps, html.sk .dvhint{ color:#A7B0BE; }
-  html.sk input, html.sk select, html.sk textarea{ background:#2C2C2E; color:#F2F4F8; border-color:#3A3F46; }
-}
+/* Light always (Sanjay, 2026-11-19): apps open in light mode regardless of
+   the phone's setting. Dark comes only from the app's own Appearance switch
+   (kit v1.3) — never from prefers-color-scheme. No OS-dark rules here. */
+/* Dark (Appearance switch only): tracker cards/sections keep their white
+   surfaces, so inherited text on them is pinned to the ink colour — the
+   kit's light dark-mode body text would otherwise ghost on white cards.
+   Text sitting directly on the page background keeps the kit's colours. */
+html.sk[data-scheme="dark"] .jobbtn,
+html.sk[data-scheme="dark"] .card,
+html.sk[data-scheme="dark"] .capcard,
+html.sk[data-scheme="dark"] .section,
+html.sk[data-scheme="dark"] .progress,
+html.sk[data-scheme="dark"] .hero,
+html.sk[data-scheme="dark"] .coc-sec,
+html.sk[data-scheme="dark"] .coc-hero{ color:#17293c; }

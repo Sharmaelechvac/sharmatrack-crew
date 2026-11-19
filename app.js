@@ -146,9 +146,11 @@
   function listFor(p) { return p === "trim" ? TRIM : ROUGH; }
   function prefixFor(p) { return p === "trim" ? "tcap-" : "cap-"; }
 
-  /* ---------- Photo backend: Netlify Function + Blobs, same origin ---------- */
-  var API = "/api/photos";
-  var META_API = "/api/jobmeta";
+  /* ---------- Photo backend: the real crew worker (Steve's review,
+     2026-11-19). Same endpoints + payload as always; the GitHub Pages copy
+     previously aimed at its own origin's /api/*, which does not exist. --- */
+  var API = "https://sharmatrack-crew.pages.dev/api/photos";
+  var META_API = "https://sharmatrack-crew.pages.dev/api/jobmeta";
   function fetchPhotos() {
     return fetch(API + "?job=" + encodeURIComponent(JOB.id))
       .then(function (r) { return r.ok ? r.json() : []; })
@@ -238,7 +240,7 @@
         var im = new Image();
         im.onload = function () { res(im); };
         im.onerror = function () { res(null); };
-        im.src = "/logo.png";
+        im.src = seedUrl("/logo.png");
       });
     }
     return logoImgPromise;
@@ -667,4 +669,9 @@
   fetchPhotos();
   fetchSeeds();
   fetchJobMeta();
+  /* One-page shell hook: pull-to-refresh re-runs the same data loads. */
+  window.__jobRefresh = function () {
+    fetchPhotos(); fetchSeeds(); fetchJobMeta();
+    return Promise.resolve();
+  };
 })();
