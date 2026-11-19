@@ -417,3 +417,7 @@ body.lb-open{overflow:hidden}
 .hero .meta span.chip.done{background:#e5f6ec;color:#12703c;border:1.5px solid #b7e3c6;font-weight:800;letter-spacing:.04em}
 .donebadge{background:#12703c;color:#fff;font-weight:800;font-size:.78rem;letter-spacing:.05em;padding:3px 9px;border-radius:999px;white-space:nowrap}
 .jm-rows dd.done{color:#12703c;font-weight:800;letter-spacing:.03em}
+
+/* Completed jobs: hide the checklist count row (2026-11-19) */
+.jobbtn:has(.donebadge) .crow{display:none}
+.crow[hidden]{display:none}

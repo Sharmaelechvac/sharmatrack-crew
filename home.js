@@ -62,6 +62,10 @@
       var prog = card.querySelector("[data-prog]");
       var chip = card.querySelector("[data-chip]");
       if (!prog || !chip) return;
+      // A job marked COMPLETED is done: hide the photo checklist count so the
+      // card never says "Not started" and "COMPLETED" at the same time.
+      var crow = prog.parentNode;
+      if (card.querySelector(".donebadge")) { if (crow) crow.hidden = true; return; }
       if (n == null) { prog.textContent = "—/" + ROUGH_EN.length; chip.hidden = true; return; }
       prog.textContent = n + "/" + ROUGH_EN.length;
       chip.hidden = false;
