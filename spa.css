@@ -6,9 +6,14 @@
 .spa-skel{ padding:20px 16px 8px; display:grid; gap:12px; max-width:560px; margin:0 auto; }
 .spa-skel .sk-title{ margin:0 0 4px; }
 .spa-err{ padding:48px 20px; text-align:center; display:grid; gap:14px; justify-items:center; }
-/* the job page name bar stays pinned to the bottom of its stack screen:
-   the kit page's transform makes position:fixed anchor to the screen */
-.sk-page .namebar{ z-index:30; }
+/* the job page name bar stays pinned to the bottom of its stack screen.
+   NOT position:fixed: the kit page carries a permanent transform, which
+   makes the page the containing block for fixed descendants — and inside
+   the page's own scroller iOS Safari then parks the bar mid-screen over
+   the content (Sanjay's screenshot, 2026-11-20). position:sticky pins it
+   to the bottom edge of the screen's scrollport instead, and it settles
+   in-flow at the end of the page — it can never float over content. */
+.sk-page .namebar{ position:sticky; bottom:0; z-index:30; }
 /* large tracker titles inside pushed screens get page-head spacing */
 .sk-page__body .wrap{ padding-top:14px; }
 /* language sheet: the one .langbar lives here, opened from the header globe */
