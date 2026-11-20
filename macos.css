@@ -1,0 +1,21 @@
+/* macOS wide-screen look (Sanjay, 2026-11-19) — presentation only, >=960px.
+   POLISH-ONLY for this app: it has NO persistent navigation to turn into a
+   source-list sidebar — spa.js builds an SK.stack hub -> pushed job screens
+   (no .sk-tabbar exists anywhere in the app), and the kit .sk-stackview is
+   position:fixed with screens absolutely positioned inside it, so offsetting
+   it by a sidebar would break the stack. What remains is the safe half of
+   the macOS look: content widens to 1100px, the header bar aligns to the
+   same measure, rows/cards get hover, selection takes the brand tint.
+   Everything lives inside the min-width query: below 960px (phones) the
+   layout and behaviour are byte-identical in effect. CSS only — no JS,
+   no data, no links, no upload flow touched. */
+@media (min-width:960px){
+  .sk-header__bar{ max-width:1100px; }
+  .sk-stackview .wrap{ max-width:1100px; }
+  .sk-page .namebar .in{ max-width:1100px; }
+  .spa-skel{ max-width:1100px; }
+  .sk-row:hover{ background:var(--sk-fill-2); }
+  .jobbtn:hover{ background:var(--sk-surface-2, #F7F8FB); }
+  .card:hover{ border-color:var(--sk-line); }
+  ::selection{ background:rgba(0,88,163,.16); }
+}
