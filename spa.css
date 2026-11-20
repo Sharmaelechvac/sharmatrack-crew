@@ -1,3 +1,8 @@
+/* SHARMATRACK CORE — unified shell styles for every builder edition.
+   Source of truth: ~/workspace/sharmatrack-core/shared/spa.css — edit there,
+   then run tools/sync.py. Includes the .sk-page .namebar sticky fix for ALL
+   editions (MRCELA/Logan/DNR previously carried only z-index — the floating
+   bar bug Sanjay screenshotted on 2026-11-20). */
 /* SHARMATRACK one-page shell adjustments (kit v1.2 SK.stack).
    Tracker screens keep their own .wrap layout inside stack pages;
    the kit page body is reset so the tracker CSS owns the content. */
@@ -28,3 +33,7 @@
 .spa-devfoot { text-align:center; padding:28px 16px 8px; }
 .spa-devfoot img { width:44px; height:44px; }
 .spa-devfoot div { margin-top:6px; font-size:13px; color:var(--sk-muted, #6b7a89); }
+
+/* Hub group labels (EXJ root hub: a builder group label above each
+   builder's job cards; inert in single-builder editions) */
+.hub-group { font-size:15px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:#0058a3; margin:20px 2px 4px; }

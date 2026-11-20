@@ -1,3 +1,9 @@
+/* SHARMATRACK CORE — unified shell for every builder edition.
+   Source of truth: ~/workspace/sharmatrack-core/shared/spa.js — edit there,
+   then run tools/sync.py; never fork this file per edition again.
+   Edition differences are data: window.TRACK_TITLES (EXJ group titles),
+   #docs-root fragments (DNR Documents rebase, inert elsewhere).
+
 /* SHARMATRACK — one-page app shell (kit v1.2 SK.stack).
    The hub (index) is rendered from the page's own markup (#hub-tpl).
    Every other screen is fetched from its existing URL, its content
@@ -14,6 +20,9 @@
     backLabel: "Jobs",
     logo: "sharmatrack-mark-blue.png",
     hubTemplate: "hub-tpl",
+    /* per-edition screen titles (EXJ group pages) come from the hub's
+       window.TRACK_TITLES config — see editions.json; empty elsewhere */
+    titles: (window.TRACK_TITLES || {}),
     /* the kit owns the header trail once SK.stack starts (setHeader
        replaces it), so the globe + More buttons ride along in every
        setHeader call, identical markup so the kit does not re-render */
@@ -69,6 +78,7 @@
   }
   function titleFor(key) {
     if (key === "more") return "More";
+    if (CFG.titles && CFG.titles[key]) return CFG.titles[key];
     var a = document.querySelector('a[href="#/' + key + '"]');
     if (a) {
       var t = (a.textContent || "").replace(/\s+/g, " ").trim();
@@ -81,9 +91,10 @@
     var idx = stackKeys.indexOf(key);
     if (idx >= 0) {
       if (idx < stackKeys.length - 1) { nav.popTo(idx); stackKeys.length = idx + 1; }
+      syncDocsBase();
       return;
     }
-    if (!key) { nav.popTo(0); stackKeys.length = 1; return; }
+    if (!key) { nav.popTo(0); stackKeys.length = 1; syncDocsBase(); return; }
     pushScreen(key, {});
   }
   window.addEventListener("hashchange", syncFromHash);
@@ -213,6 +224,13 @@
     });
     var styles = "";
     doc.querySelectorAll("style").forEach(function (s) { styles += s.outerHTML; });
+    /* page-scoped stylesheets (e.g. mukherjee's docs.css) ride along;
+       the shell's own sheets (kit, styles.css, sk-bridge.css) are skipped */
+    doc.querySelectorAll('link[rel="stylesheet"]').forEach(function (l) {
+      var href = l.getAttribute("href") || "";
+      if (/sharma-kit\.css|styles\.css|sk-bridge\.css/.test(href)) return;
+      styles += '<link rel="stylesheet" href="' + resolveRel(dir, href) + '">';
+    });
     var parts = [];
     var wrap = doc.querySelector(".wrap");
     var isJob = !!(wrap && wrap.hasAttribute("data-job"));
@@ -232,11 +250,12 @@
     parts.forEach(function (p) { holder.appendChild(p); });
     holder.querySelectorAll("script").forEach(function (s) { s.remove(); });
     rewriteUrls(holder, dir);
-    var h1 = holder.querySelector("h1");
+    var h1 = holder.querySelector("h1") || holder.querySelector(".builder-ed");
     return {
       html: styles + holder.innerHTML,
       scripts: scripts,
       isJob: isJob,
+      docsBase: holder.querySelector("#docs-root") ? dir : null,
       title: h1 ? (h1.textContent || "").replace(/\s+/g, " ").trim() : ""
     };
   }
@@ -264,12 +283,37 @@
     return chain;
   }
 
+  /* Documents (DNR): docs.js — byte-identical, never edited — fetches
+     "documents.enc.json" and "documents/…" relative to the page URL.
+     On the standalone page that is the job directory; inside the one-page
+     app the URL is the app root, so while a Documents screen is on top
+     those two relative fetches are rebased to the job's directory.
+     Nothing else is intercepted: every other fetch in the app uses an
+     absolute API URL or a script-base-prefixed path. */
+  var screenDocs = {}; // route key -> docs base dir ("" = none)
+  var docsBase = null;
+  if (window.fetch) {
+    var rawFetch = window.fetch.bind(window);
+    window.fetch = function (input, init) {
+      if (docsBase && typeof input === "string" &&
+          (input.indexOf("documents.enc.json") === 0 || input.indexOf("documents/") === 0)) {
+        input = docsBase + input;
+      }
+      return rawFetch(input, init);
+    };
+  }
+  function syncDocsBase() {
+    var top = stackKeys.length ? stackKeys[stackKeys.length - 1] : "";
+    docsBase = screenDocs[top] || null;
+  }
+
   function loadScreen(key, page, title, parentLabel, parentHash) {
     fetch(key, { credentials: "same-origin" })
       .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.text(); })
       .then(function (html) {
         var doc = new DOMParser().parseFromString(html, "text/html");
         var frag = extract(doc, key);
+        if (frag.docsBase) { screenDocs[key] = frag.docsBase; syncDocsBase(); }
         page.html(frag.html);
         page.setHeader({
           lead: backLead(parentLabel, parentHash),

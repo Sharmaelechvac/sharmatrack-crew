@@ -1,0 +1,56 @@
+{
+  "app": "SHARMATRACK",
+  "edition": "zbrothers",
+  "builder": "Z Brothers Construction",
+  "builderLogo": "zbrothers-logo-color.png",
+  "builderLogoStatus": "on-file",
+  "trades": [
+    "Electrical",
+    "HVAC"
+  ],
+  "liveUrl": "https://sharmaelechvac.github.io/sharmatrack-crew/",
+  "repo": "sharmaelechvac/sharmatrack-crew",
+  "shell": {
+    "macos": "canonical",
+    "skBridge": "canonical"
+  },
+  "shellSource": "~/workspace/sharmatrack-core (edit the shell there, run tools/sync.py \u2014 never fork shell files here)",
+  "houses": [
+    {
+      "dir": "3131",
+      "jobId": "3131",
+      "address": "3131 W Eunice Dr",
+      "city": "Dunnellon, FL",
+      "trades": [
+        "Electrical"
+      ]
+    },
+    {
+      "dir": "3262",
+      "jobId": "3262",
+      "address": "3262 W Eunice Dr",
+      "city": "Dunnellon, FL",
+      "trades": [
+        "Electrical"
+      ]
+    },
+    {
+      "dir": "3274",
+      "jobId": "3274",
+      "address": "3274 W Eunice Dr",
+      "city": "Dunnellon, FL",
+      "trades": [
+        "Electrical"
+      ]
+    },
+    {
+      "dir": "3286",
+      "jobId": "3286",
+      "address": "3286 W Eunice Dr",
+      "city": "Dunnellon, FL",
+      "trades": [
+        "Electrical"
+      ]
+    }
+  ]
+}
