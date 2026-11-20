@@ -428,3 +428,34 @@ body.lb-open{overflow:hidden}
 .blogo { position:relative; display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:8px; background:#0058a3; vertical-align:-9px; margin-right:7px; overflow:hidden; flex:0 0 auto; }
 .blogo__init { color:#fff; font-weight:800; font-size:13px; letter-spacing:.02em; }
 .blogo img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:#fff; }
+
+/* Type bump (2026-11-20, Sanjay: "Wording is a bit small on the builder jobs
+   pages"): small labels, captions and status lines raised to readable
+   sizes — captions and notes at body size, nothing under ~15px. Body copy
+   and headings already sit at the 18px standard and are untouched. */
+.tiles figcaption{font-size:.95rem}
+#tug-tiles .tiles figcaption span{font-size:.95rem}
+.capcard .status{font-size:1rem}
+.capdef{font-size:1rem}
+.gear .kind{font-size:.95rem}
+.gear .spec{font-size:1rem}
+.pill{font-size:.88rem}
+.upnote{font-size:1rem}
+.notconn{font-size:1rem}
+.hero .meta .tile i{font-size:.85rem}
+.jobbar .jb-brand{font-size:.8rem}
+.tile .up{font-size:.85rem}
+.tile .lb{font-size:.95rem}
+.st-tag{font-size:.85rem}
+.dev-credit{font-size:.9rem}
+.builder-band .bb-ed{font-size:.9rem}
+.duo-zbtxt i{font-size:.88rem}
+.home-lic{font-size:.95rem}
+.launch-head .date{font-size:1rem}
+.sched-note{font-size:1rem}
+.lightbox .lb-cap{font-size:17px}
+.langbar .lbl{font-size:.95rem}
+#jm-form label{font-size:1rem}
+.coc-sec .kicker{font-size:.95rem}
+.coc-hero .eb{font-size:.95rem}
+.hub-tile .hub-kicker{font-size:.9rem}
