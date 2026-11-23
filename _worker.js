@@ -35,7 +35,7 @@
 //   POST   /api/jobmeta           save the record (inspection_status must be
 //                                 "", "requested", "passed" or "failed")
 
-const JOBS = new Set(["3131", "3262", "3286", "3274"]);
+const JOBS = new Set(["3131", "3262", "3286", "3274", "614"]);
 const EXT_BY_TYPE = {
   "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp",
   "image/gif": "gif", "video/mp4": "mp4", "video/quicktime": "mov",

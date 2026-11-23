@@ -14,7 +14,7 @@
     "Range & water heater", "HVAC power & disconnects",
     "Exterior & garage boxes", "Sealed penetrations"
   ];
-  var JOBS = ["3131", "3262", "3274", "3286"];
+  var JOBS = ["3131", "3262", "3274", "3286", "614"];
 
   var UI = {
     en: {
