@@ -7,6 +7,83 @@
 <link rel="stylesheet" href="../sk-bridge.css?v=4">
 <link rel="icon" href="../sharmatrack-app-icon.png">
 <link rel="apple-touch-icon" href="../sharmatrack-app-icon.png">
+<style>
+/* ===== HOME PAGE (template v1, 212 first — Sanjay 2026-11-23) =====
+   A different canvas from the crew pages: full-bleed navy masthead,
+   a horizontal stat strip, a day-by-day week timeline, a completion
+   timeline, inspection record cards and a stage stepper. All copy is
+   18px+, tap targets 48px+, brand stays white + #0058a3/#004585. */
+.hp{font-size:18px;color:#14243d;margin:0 -14px}
+.hp *{box-sizing:border-box}
+.hp-mast{background:#004585;color:#fff;padding:26px 20px 22px}
+.hp-kicker{font-size:15px;font-weight:800;letter-spacing:.14em;color:#bcd7f2;text-transform:uppercase}
+.hp-mast h1{font-size:34px;line-height:1.12;margin:8px 0 4px;color:#fff;text-transform:none;letter-spacing:0}
+.hp-sub{font-size:19px;color:#d7e8fa;font-weight:600}
+.hp-now{display:flex;gap:12px;align-items:flex-start;background:#0058a3;border:1px solid #2f7fc4;border-radius:14px;padding:14px 16px;margin-top:16px}
+.hp-now .dot{flex:0 0 14px;width:14px;height:14px;border-radius:50%;background:#7ee2a0;margin-top:6px}
+.hp-now b{font-size:20px;display:block}
+.hp-now span{font-size:18px;color:#d7e8fa}
+.hp-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.hp-actions a{flex:1 1 30%;min-height:52px;display:flex;align-items:center;justify-content:center;text-align:center;background:#fff;color:#004585;font-weight:800;font-size:18px;text-decoration:none;border-radius:12px;padding:10px 8px}
+.hp-actions a.alt{background:transparent;color:#fff;border:2px solid #7fb2e5}
+.hp-nav{display:flex;gap:8px;overflow-x:auto;padding:14px 16px 4px;-webkit-overflow-scrolling:touch}
+.hp-nav button{flex:0 0 auto;min-height:48px;display:inline-flex;align-items:center;background:#eaf2fb;color:#004585;font-weight:800;font-size:17px;border:0;border-radius:999px;padding:10px 18px;cursor:pointer;font-family:inherit}
+.hp-stats{display:flex;gap:0;overflow-x:auto;border-bottom:2px solid #d7e6f5;padding:6px 8px 14px;-webkit-overflow-scrolling:touch}
+.hp-stat{flex:1 0 128px;padding:6px 12px;border-left:1px solid #d7e6f5}
+.hp-stat:first-child{border-left:0}
+.hp-stat i{display:block;font-style:normal;font-size:14px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#5b7ea6}
+.hp-stat b{display:block;font-size:21px;color:#004585;margin-top:2px;overflow-wrap:anywhere}
+.hp-sec{padding:22px 20px 6px}
+.hp-sec>h2{font-size:26px;margin:0 0 4px;color:#004585;text-transform:none;letter-spacing:0;padding-left:0}
+.hp-sec>h2::before{display:none}
+.hp-sec .lede{font-size:18px;color:#5b6478;margin:0 0 14px}
+.hp-facts{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}
+.hp-facts div{padding:10px 0;border-bottom:1px solid #e3ebf5}
+.hp-facts dt{font-size:15px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5b7ea6}
+.hp-facts dd{margin:2px 0 0;font-size:19px;font-weight:700;color:#14243d}
+.hp-week{border-left:4px solid #d7e6f5;margin-left:8px}
+.hp-day{display:flex;gap:14px;padding:12px 0 12px 18px;position:relative}
+.hp-day::before{content:"";position:absolute;left:-11px;top:20px;width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid #0058a3}
+.hp-day.today::before{background:#0058a3}
+.hp-day .dow{flex:0 0 86px}
+.hp-day .dow b{display:block;font-size:19px;color:#004585}
+.hp-day .dow span{font-size:16px;color:#5b6478;font-weight:700}
+.hp-day .ev{flex:1}
+.hp-ev{background:#f4f8fc;border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.hp-ev b{font-size:19px;display:block}
+.hp-ev span{font-size:17px;color:#44546e}
+.hp-tag{display:inline-block;font-size:14px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:#0058a3;color:#fff;border-radius:6px;padding:3px 9px;margin-bottom:6px}
+.hp-tag.hvac{background:#2f7fc4}
+.hp-none{font-size:18px;color:#5b6478;padding:6px 0 2px}
+.hp-done{list-style:none;margin:0;padding:0}
+.hp-done li{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid #e3ebf5;align-items:flex-start}
+.hp-check{flex:0 0 34px;width:34px;height:34px;border-radius:50%;background:#0e7a3d;color:#fff;font-size:20px;font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.hp-check.now{background:#0058a3}
+.hp-done b{font-size:19px;display:block}
+.hp-done span{font-size:17px;color:#44546e;display:block}
+.hp-insp{border:2px solid #d7e6f5;border-radius:16px;padding:16px;margin-bottom:14px;background:#fff}
+.hp-insp .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.hp-insp h3{font-size:21px;margin:0;color:#14243d;text-transform:none;letter-spacing:0}
+.hp-badge{font-size:15px;font-weight:900;letter-spacing:.06em;padding:6px 12px;border-radius:8px;background:#0e7a3d;color:#fff;white-space:nowrap}
+.hp-badge.wait{background:#8a5a00}
+.hp-insp dl{display:grid;grid-template-columns:1fr 1fr;gap:0 18px;margin:10px 0 0}
+.hp-insp dl div{padding:7px 0;border-top:1px solid #eef3f9}
+.hp-insp dt{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5b7ea6}
+.hp-insp dd{margin:1px 0 0;font-size:18px;font-weight:600}
+.hp-insp dd a{color:#0058a3;font-weight:800}
+.hp-note{font-size:17px;color:#44546e;margin-top:10px}
+.hp-steps{display:flex;flex-direction:column;gap:0;margin-top:6px}
+.hp-step{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #e3ebf5}
+.hp-step .ic{flex:0 0 36px;width:36px;height:36px;border-radius:50%;border:3px solid #b9cfe8;color:#5b7ea6;font-weight:900;font-size:17px;display:flex;align-items:center;justify-content:center;background:#fff}
+.hp-step.done .ic{background:#0e7a3d;border-color:#0e7a3d;color:#fff}
+.hp-step.now .ic{background:#0058a3;border-color:#0058a3;color:#fff}
+.hp-step b{font-size:19px;display:block}
+.hp-step span{font-size:17px;color:#44546e;display:block}
+.hp-src{font-size:15px;color:#7c8aa0;padding:14px 20px 20px;line-height:1.5}
+.hp-wm{text-align:center;font-size:14px;font-weight:800;letter-spacing:.22em;color:#9db8d6;padding:0 0 18px}
+.hp-div{margin:26px 0 4px;padding:14px 20px;background:#eaf2fb;color:#004585;font-weight:900;font-size:19px;letter-spacing:.04em;text-transform:uppercase}
+@media (max-width:560px){.hp-facts{grid-template-columns:1fr}.hp-insp dl{grid-template-columns:1fr}.hp-mast h1{font-size:30px}}
+</style>
 </head><body class="sk">
 <div class="sk-offline" aria-live="polite"></div>
 
@@ -18,6 +95,49 @@
 </div>
 <div class="jobbar"><span class="jb-brand"><a href="https://sharmaelechvac.github.io/sharmatrack" target="_blank" rel="noopener"><img src="../sharmatrack-app-icon.png" alt="">SHARMATRACK</a></span><span class="jb-addr">3262 W Eunice Dr · Dunnellon, FL</span><span class="jb-num" id="jobbar-num">0/16</span></div>
 <div class="wrap" data-job="3262">
+  <!-- ===== HOME — house summary (template v1, rollout 2026-11-23) ===== -->
+  <div class="hp" id="home-top">
+    <div class="hp-mast">
+      <div class="hp-kicker">Z Brothers · House Home Page</div>
+      <h1>3262 W Eunice Dr</h1>
+      <div class="hp-sub">Dunnellon, FL · NONA 1672 · Trade: Electric</div>
+      <div class="hp-now"><span class="dot" aria-hidden="true"></span><div><b>Now: Sharma work complete</b><span>All Sharma electrical phases are complete on this house · inspection cleanup is on Mon Nov 23 (Manny, first stop — the Eunice houses together)</span></div></div>
+      <div class="hp-actions"><a href="https://sharma-crew.sharma-crew.workers.dev/prints/Nona-Electrical-v13v-3262-W-Eunice-Dr.pdf" target="_blank" rel="noopener">Electrical Prints</a></div>
+    </div>
+    <nav class="hp-nav" aria-label="On this page">
+      <button type="button" onclick="document.getElementById('hp-week').scrollIntoView({behavior:'smooth'})">This Week</button><button type="button" onclick="document.getElementById('hp-done').scrollIntoView({behavior:'smooth'})">Completed</button><button type="button" onclick="document.getElementById('hp-insp').scrollIntoView({behavior:'smooth'})">Inspections</button><button type="button" onclick="document.getElementById('hp-next').scrollIntoView({behavior:'smooth'})">What&rsquo;s Next</button>
+    </nav>
+    <div class="hp-stats" aria-label="Key facts"><div class="hp-stat"><i>Living SF</i><b>1,661</b></div><div class="hp-stat"><i>Under Roof SF</i><b>2,243</b></div><div class="hp-stat"><i>Plan</i><b>NONA 1672</b></div><div class="hp-stat"><i>Status</i><b>Complete</b></div><div class="hp-stat"><i>Photos on File</i><b>13</b></div></div>
+    <section class="hp-sec" aria-label="At a glance">
+      <h2>At a Glance</h2>
+      <dl class="hp-facts"><div><dt>Builder / GC</dt><dd>Z Brothers Construction</dd></div><div><dt>Plan</dt><dd>NONA 1672</dd></div><div><dt>Trade</dt><dd>Electric</dd></div><div><dt>Interior Panel — Electrical</dt><dd>Siemens</dd></div><div><dt>Status</dt><dd>Complete</dd></div></dl>
+    </section>
+    <section class="hp-sec" id="hp-week" aria-label="This week's schedule">
+      <h2>This Week&rsquo;s Schedule</h2>
+      <p class="lede">Week of Mon Nov 23 – Sun Nov 29, 2026 · Trade: Electrical</p>
+      <div class="hp-week"><div class="hp-day today"><div class="dow"><b>MON</b><span>Nov 23</span></div><div class="ev"><div class="hp-ev"><span class="hp-tag">Electric</span><b>Inspection Cleanup — Eunice houses</b><span>Manny · first stop · 3131 / 3262 / 3274 / 3286 W Eunice Dr together</span></div></div></div><div class="hp-day"><div class="dow"><b>REST OF WEEK</b><span>Nov 24–29</span></div><div class="ev"><p class="hp-none">No work scheduled for this home this week on record.</p></div></div></div>
+    </section>
+    <section class="hp-sec" id="hp-done" aria-label="Completed tasks">
+      <h2>Completed Tasks</h2>
+      <p class="lede">Finished work on record for this home — facts only, by trade.</p>
+      <ul class="hp-done"><li><span class="hp-check" aria-hidden="true">✓</span><div><b>All Sharma electrical phases complete — Trade: Electrical</b><span>This house is declared complete on the tracker (rough-in and trim done) · Siemens interior panel</span></div></li></ul>
+    </section>
+    <section class="hp-sec" id="hp-insp" aria-label="Inspection records">
+      <h2>Inspection Records</h2>
+      <p class="lede">Permit # not on file</p>
+      <article class="hp-insp"><div class="top"><h3>Inspection Records — This Home</h3><span class="hp-badge wait">NONE ON FILE</span></div><p class="hp-note">No inspection records are on file for this home yet.</p></article>
+    </section>
+    <section class="hp-sec" id="hp-next" aria-label="What's next and ready dates">
+      <h2>What&rsquo;s Next</h2>
+      <p class="lede">Stage by stage — where this home stands and what comes after.</p>
+      <div class="hp-steps"><div class="hp-step done"><span class="ic" aria-hidden="true">✓</span><div><b>Electrical Rough-In — Electrical</b><span>Complete</span></div></div><div class="hp-step done"><span class="ic" aria-hidden="true">✓</span><div><b>Electrical Trim — Electrical</b><span>Complete</span></div></div><div class="hp-step now"><span class="ic" aria-hidden="true">●</span><div><b>Inspection Cleanup — Electrical · NOW</b><span>Mon Nov 23, 2026 · Manny</span></div></div></div>
+      
+    </section>
+    <p class="hp-src">Sources: Sharma My Day schedule, Nov 23, 2026 · NONA 1672 plan set (Living 1,661 SF / Under Roof 2,243 SF) · tracker record. No prices are shown on builder pages. Home summary updated Mon Nov 23, 2026.</p>
+    <div class="hp-wm">SHARMA360</div>
+  </div>
+  <div class="hp-div" style="margin:0 -14px">Full Job Record &amp; Crew Checklists ↓</div>
+  <!-- ===== /HOME ===== -->
   <div class="hero">
     <div class="duo"><span class="duo-card"><img class="duo-sharma" src="../logo.png" alt="Sharma Electric &amp; HVAC"></span><span class="duo-card"><img class="duo-zb" src="../zbrothers-logo-color.png" alt="Z Brothers Construction"><span class="duo-zbtxt"><b>Z BROTHERS</b><i>CONSTRUCTION</i></span></span></div>
     <h1>3262 W Eunice Dr</h1>
