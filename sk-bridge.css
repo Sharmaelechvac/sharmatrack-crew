@@ -54,12 +54,12 @@ html.sk[data-scheme="dark"] .hero,
 html.sk[data-scheme="dark"] .coc-sec,
 html.sk[data-scheme="dark"] .coc-hero{ color:#17293c; }
 
-/* Home summary (hp-) dark scheme — 2026-11-25, fleet Appearance standard.
+/* Home summary (hp-) dark scheme — 2026-11-25, fleet Appearance standard. Declarations carry !important so the summary wins over each page’s inline hp- styles in Dark.
    The hp- blocks follow the kit Appearance switch (data-scheme, stored in
    localStorage "sk-scheme") like the rest of the app: dark surfaces and
    light text in Dark, untouched in Light. Masthead stays brand navy. */
-html.sk[data-scheme="dark"] .hp{background:#0d141d;color:#e9f2f9}
-html.sk[data-scheme="dark"] .hp-nav button{background:#1b2836;color:#8CC4F5}
+html.sk[data-scheme="dark"] .hp{background:#0d141d !important;color:#e9f2f9}
+html.sk[data-scheme="dark"] .hp-nav button{background:#1b2836 !important;color:#8CC4F5}
 html.sk[data-scheme="dark"] .hp-stats{border-bottom-color:#31465e}
 html.sk[data-scheme="dark"] .hp-stat{border-left-color:#31465e}
 html.sk[data-scheme="dark"] .hp-stat i{color:#9db6cc}
@@ -78,7 +78,7 @@ html.sk[data-scheme="dark"] .hp-ev span{color:#9db6cc}
 html.sk[data-scheme="dark"] .hp-none{color:#9db6cc}
 html.sk[data-scheme="dark"] .hp-done li{border-bottom-color:#31465e}
 html.sk[data-scheme="dark"] .hp-done span{color:#9db6cc}
-html.sk[data-scheme="dark"] .hp-insp{background:#1b2836;border-color:#31465e}
+html.sk[data-scheme="dark"] .hp-insp{background:#1b2836 !important;border-color:#31465e}
 html.sk[data-scheme="dark"] .hp-insp h3{color:#e9f2f9}
 html.sk[data-scheme="dark"] .hp-insp dl div{border-top-color:#31465e}
 html.sk[data-scheme="dark"] .hp-insp dt{color:#9db6cc}
@@ -86,7 +86,7 @@ html.sk[data-scheme="dark"] .hp-insp dd{color:#e9f2f9}
 html.sk[data-scheme="dark"] .hp-insp dd a{color:#8CC4F5}
 html.sk[data-scheme="dark"] .hp-note{color:#9db6cc}
 html.sk[data-scheme="dark"] .hp-step{border-bottom-color:#31465e}
-html.sk[data-scheme="dark"] .hp-step .ic{background:#1b2836;border-color:#31465e}
+html.sk[data-scheme="dark"] .hp-step .ic{background:#1b2836 !important;border-color:#31465e}
 html.sk[data-scheme="dark"] .hp-step span{color:#9db6cc}
 html.sk[data-scheme="dark"] .hp-src{color:#7e97ad}
-html.sk[data-scheme="dark"] .hp-div{background:#16283c;color:#8CC4F5}
+html.sk[data-scheme="dark"] .hp-div{background:#16283c !important;color:#8CC4F5}
